@@ -8,7 +8,7 @@
     <title>Singolo</title>
 </head>
 <body>
-    <header id="home">
+    <header>
         <div class="wrapper">
             <h1>Singolo</h1>
             <nav id="menu">
@@ -23,7 +23,7 @@
         </div>
     </header>
     <main>
-        <section class="slider">
+        <section class="slider" id="home">
             <div class="wrapper">
                 <div class="img">
                     <img width="240" height="483" src="assets/iPhone Vertical.png" alt="iPhone Vertical" id="vPhone">
@@ -143,7 +143,7 @@
                         <input id="name" type="text" name="name" placeholder="Name (Required)" required>
                         <input id="email" type="email" name="email" placeholder="Email (Required)" required>
                         <input id="subject" type="text" name="subject" placeholder="Subject">
-                        <textarea id="description" name="message" rows="10" cols="30" placeholder="Describe your project in detail..."></textarea>
+                        <textarea id="description" name="message" rows="5" cols="30" maxlength = "280" placeholder="Describe your project in detail..."></textarea>
                         <button type="submit" id="submit-btn">Submit</button>
                     </form>
                     <div class="contact-info">
@@ -156,12 +156,9 @@
                 </div>
                 <div id="message-block" class="not-visible">
                     <div id="message">
-                        <p>Письмо отправлено
-                            <br>
-                            <span id="fsubject"></span>
-                            <br>
-                            <span id="fdescription"></span>
-                        </p>
+                        <p>The letter was sent</p>
+                        <p id="fsubject"></p>
+                        <p id="fdescription"></p>
                         <button id="close-btn">OK</button>
                     </div>
                 </div>

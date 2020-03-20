@@ -13,6 +13,20 @@ menu.addEventListener('click', event => {
     menu.querySelectorAll('a').forEach(elem => elem.classList.remove('active'));
     event.target.classList.add('active');
 });
+// track scroll
+document.addEventListener('scroll', () => {
+    let currentPosition = window.scrollY + document.querySelector('header').offsetHeight; //header height adjustment 
+    document.querySelectorAll('section').forEach(elem => {
+        if(elem.offsetTop <= currentPosition && (elem.offsetTop + elem.offsetHeight) > currentPosition) {
+            menu.querySelectorAll('a').forEach(a => {
+                a.classList.remove('active');
+                if(elem.getAttribute('id') == a.getAttribute('href').substring(1)) {
+                    a.classList.add('active');
+                }
+            });
+        }
+    });
+});
 
 //carousel
 let currentImage = 0;
@@ -58,23 +72,26 @@ document.querySelector('.layout-4-column').addEventListener('click', () => {
 form.addEventListener('submit', event => {
     event.preventDefault();
 });
-submitBtn.addEventListener('click', () => {
-    const subject = document.getElementById('subject').value.toString();
-    const description = document.getElementById('description').value.toString();
-    if(subject == '') {
-        document.getElementById('fsubject').innerText = `Без темы`;
-    } else {
-        document.getElementById('fsubject').innerText = `Тема: ${subject}`;
+submitBtn.addEventListener('click', event => {
+    if (document.getElementById('name').checkValidity() && document.getElementById('email').checkValidity()) {
+        const subject = document.getElementById('subject').value.toString();
+        const description = document.getElementById('description').value.toString();
+        if(subject == '') {
+            document.getElementById('fsubject').innerText = `No subject`;
+        } else {
+            document.getElementById('fsubject').innerText = `Subject: ${subject}`;
+        }
+        if(description == '') {
+            document.getElementById('fdescription').innerText = `No description`;
+        } else {
+            document.getElementById('fdescription').innerText = `Description: ${description}`;
+        }
+        document.getElementById('message-block').classList.remove('not-visible');
     }
-    if(description == '') {
-        document.getElementById('fdescription').innerText = `Без описания`;
-    } else {
-        document.getElementById('fdescription').innerText = `Описание: ${description}`;
-    }
-    document.getElementById('message-block').classList.remove('not-visible');
 });
 closeBtn.addEventListener('click', () => {
     document.getElementById('fsubject').innerText = '';
     document.getElementById('fdescription').innerText = '';
     document.getElementById('message-block').classList.add('not-visible');
+    document.querySelector('form').reset();
 });
