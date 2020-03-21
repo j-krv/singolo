@@ -29,6 +29,7 @@ document.addEventListener('scroll', () => {
 //carousel
 const items = document.querySelectorAll('.item');
 const slider = document.querySelector('.slider');
+const arrows = document.querySelectorAll('.arrow');
 
 let currentItem = 0;
 let isEnabled = true;
@@ -64,6 +65,10 @@ function nextItem(n) {
         slider.classList.remove('blue');
     }
     else { slider.classList.add('blue'); }
+    if (document.querySelector('.arrow').classList[2] == 'blue') {
+        arrows.forEach(a => a.classList.remove('blue'));
+    }
+    else { arrows.forEach(a => a.classList.add('blue')); }
 }
 document.querySelector('.arrow.left').addEventListener('click', function() {
     if(isEnabled) {
