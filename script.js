@@ -81,7 +81,6 @@ document.querySelector('.arrow.right').addEventListener('click', function() {
     }
 });
 
-
 //add black screens to phones
 let vScreen = document.querySelector('.vertical.black-screen');
 let hScreen = document.querySelector('.horizontal.black-screen');
@@ -91,6 +90,40 @@ verticalPhone.addEventListener('click', () => {
 });
 horizontalPhone.addEventListener('click', () => {
     hScreen.classList.contains('not-visible') ? hScreen.classList.remove('not-visible') : hScreen.classList.add('not-visible');
+});
+
+//switch tabs
+const tabs = document.querySelector('#portfolio > div > div:nth-child(3)');
+const gridItems = document.querySelectorAll('.layout-4-column > img');
+
+tabs.addEventListener('click', event => {
+    tabs.querySelectorAll('button').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+    if(event.target.value == 'All') {
+        gridItems.forEach(i => i.classList.remove('not-visible'));
+    }
+    if(event.target.value == 'Web Design') {
+        gridItems.forEach(i => i.classList.remove('not-visible'));
+        gridItems[0].classList.add('not-visible');
+        gridItems[1].classList.add('not-visible');
+        gridItems[6].classList.add('not-visible');
+        gridItems[9].classList.add('not-visible');
+    }
+    if(event.target.value == 'Graphic Design') {
+        gridItems.forEach(i => i.classList.remove('not-visible'));
+        gridItems[1].classList.add('not-visible');
+        gridItems[3].classList.add('not-visible');
+        gridItems[4].classList.add('not-visible');
+        gridItems[8].classList.add('not-visible');
+        gridItems[10].classList.add('not-visible');
+        gridItems[11].classList.add('not-visible');
+    }
+    if(event.target.value == 'Artwork') {
+        gridItems.forEach(i => i.classList.remove('not-visible'));
+        gridItems[2].classList.add('not-visible');
+        gridItems[5].classList.add('not-visible');
+        gridItems[7].classList.add('not-visible');
+    }
 });
 
 //add border to images in portfolio

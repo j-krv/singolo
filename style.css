@@ -299,9 +299,14 @@ h3 {
     margin-left: 6px;
 }
 .portfolio button:hover {
+    cursor: pointer;
+}
+.portfolio button.active {
     color: #dedede;
     border: 1px solid #c5c5c5;
     cursor: pointer;
+    display: inline-block;
+    outline: none;
 }
 .layout-4-column {
     margin-top: 20px;
