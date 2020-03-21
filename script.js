@@ -1,6 +1,4 @@
 const menu = document.getElementById('menu');
-const images = document.querySelectorAll('section.slider > div > div.img');
-const slider = document.querySelector(".slider");
 const verticalPhone = document.getElementById('vPhone');
 const horizontalPhone = document.getElementById('hPhone');
 const portfolioImages = document.querySelectorAll('.layout-4-column > img');
@@ -29,27 +27,55 @@ document.addEventListener('scroll', () => {
 });
 
 //carousel
-let currentImage = 0;
-function changeCurrentImg(n) {
-    currentImage = (n + images.length) % images.length;
+const items = document.querySelectorAll('.item');
+const slider = document.querySelector('.slider');
+
+let currentItem = 0;
+let isEnabled = true;
+
+function changeCurrentItem(n) {
+    currentItem = (n + items.length) % items.length;
 }
-function hideImage(currentImage) {
-    images.forEach(elem => elem.classList.add('not-visible'));
-    images[currentImage].classList.remove('not-visible');
-    if(currentImage == 1){
-        slider.style.backgroundColor='#648bf0';
-    } else {
-        slider.style.backgroundColor='#f06c64';
-    }
+function hideItem(direction) {
+    isEnabled = false;
+    items[currentItem].classList.add(direction);
+    items[currentItem].addEventListener('animationend', function() {
+        this.classList.remove('active', direction);
+    });
 };
-document.querySelector('.arrow.left').addEventListener('click', () => {
-    changeCurrentImg(currentImage - 1);
-    hideImage(currentImage);
+function showItem(direction) {
+    items[currentItem].classList.add('next', direction);
+    items[currentItem].addEventListener('animationend', function() {
+        this.classList.remove('next', direction);
+        this.classList.add('active');
+        isEnabled = true;
+    });
+}
+function previousItem(n) {
+    hideItem('to-right');
+    changeCurrentItem(n - 1);
+    showItem('from-left');
+}
+function nextItem(n) {
+    hideItem('to-left');
+    changeCurrentItem(n + 1);
+    showItem('from-right');
+    if (slider.classList[1] == 'blue') {
+        slider.classList.remove('blue');
+    }
+    else { slider.classList.add('blue'); }
+}
+document.querySelector('.arrow.left').addEventListener('click', function() {
+    if(isEnabled) {
+        previousItem(currentItem);
+    }
 });
-document.querySelector('.arrow.right').addEventListener('click', () => {
-    changeCurrentImg(currentImage + 1);
-    hideImage(currentImage);
+document.querySelector('.arrow.right').addEventListener('click', function() {
+    if(isEnabled) {
+        nextItem(currentItem);
+    }
 });
+
 
 //add black screens to phones
 let vScreen = document.querySelector('.vertical.black-screen');

@@ -64,6 +64,7 @@ main {
     background-color: #f06c64;
     border-bottom: 6px solid #ea676b;
     padding-top: 94px;
+    transition: 1s ease-out;
 }
 .services {
     padding-top: 60px;
@@ -122,6 +123,7 @@ nav a {
 }
 nav a.active {
     color:#f06c64;
+    display: inline;
 }
 nav a:before {
     content: "·";
@@ -134,20 +136,50 @@ nav a:before {
 nav li:nth-child(1) a:before {
     display: none;
 }
-.slider .wrapper {
-    height: 595px;
-    position: relative;
+.slider.blue {
+    background-color: #648bf0;
+    border-bottom: 6px solid #5d81de;
 }
-.slider img {
+.carousel {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+} 
+.item-container {
+    position: relative;
+    overflow: hidden;
+}
+.item {
+    display: none;
+    height: 598px;
+    position: relative;
+    margin: 0 auto;
+    animation: 1s ease-in-out;
+}
+.active,
+.next {
+    display: block;
+}
+.next {
     position: absolute;
+    top: 0;
+    width: 100%; 
+} 
+.item-img {
+    display: flex;
+    justify-content: space-between;
 }
 #vPhone {
-    top: 54px;
-    left: 112px;
+    margin-top: 54px;
+    margin-left: 72px;
 }
 #hPhone {
-    top: 175px;
-    right: 111px;
+    margin-top: 175px;
+    margin-right: 71px;
+}
+#slide-2 {
+    margin: 43px auto;
 }
 .not-visible {
     display: none;
@@ -161,13 +193,13 @@ nav li:nth-child(1) a:before {
     height: 333px;
     width: 188px;
     top: 119px;
-    left: 126px;
+    left: 86px;
 }
 .horizontal.black-screen {
     height: 188px;
     width: 333px;
     top: 189px;
-    right: 202px;
+    right: 162px;
 }
 .arrow {
     border: solid #c94549;
@@ -179,17 +211,18 @@ nav li:nth-child(1) a:before {
 .arrow.left {
     position:absolute;
     top: 285px;
-    left: 45px;
+    left: 4px;
     transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
 .arrow.right {
     position:absolute;
     top: 285px;
-    right: 43px;
+    right: 4px;
     transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
+
 h2 {
     font-size: 30px;
     color: #666d89;
@@ -433,4 +466,36 @@ footer span {
     margin: 0;
     overflow: hidden;
     white-space: nowrap;
+}
+.to-left {
+    animation-name: left;
+} 
+.to-right {
+    animation-name: right;
+    animation-direction: reverse;
+}
+.from-left {
+    animation-name: left;
+    animation-direction: reverse;
+}
+.from-right {
+    animation-name: right;
+}
+  
+@keyframes left {
+    from {
+        left: 0;
+    }
+    to {
+        left: -100%;
+    }
+}
+  
+@keyframes right {
+    from {
+        left: 100%;
+    }
+    to {
+        left: 0;
+    }
 }
