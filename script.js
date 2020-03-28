@@ -56,6 +56,14 @@ function previousItem(n) {
     hideItem('to-right');
     changeCurrentItem(n - 1);
     showItem('from-left');
+    if (slider.classList[1] == 'blue') {
+        slider.classList.remove('blue');
+    }
+    else { slider.classList.add('blue'); }
+    if (document.querySelector('.arrow').classList[2] == 'blue') {
+        arrows.forEach(a => a.classList.remove('blue'));
+    }
+    else { arrows.forEach(a => a.classList.add('blue')); }
 }
 function nextItem(n) {
     hideItem('to-left');
