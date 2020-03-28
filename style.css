@@ -484,9 +484,10 @@ p.address {
 }
 footer .wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 }
 footer span {
+    display: none;
     font-size: 12px;
     color: #666d89;
     margin-top: 32px
@@ -655,6 +656,12 @@ footer span {
     #submit-btn {
         margin-bottom: 0;
         width: fit-content;
+    }
+    footer .wrapper {
+        justify-content: space-between;
+    }
+    footer span {
+        display: inline-block;
     }
 }
 
